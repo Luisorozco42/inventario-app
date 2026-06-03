@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductoService } from '../producto.service';
 import { Producto } from '../producto';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-producto-lista',
@@ -8,8 +9,9 @@ import { Producto } from '../producto';
   templateUrl: './producto-lista.html',
 })
 export class ProductoLista {
-  productos!: Producto[];
+  productos: Producto[] = []  ;
   private productoServicio = inject(ProductoService);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(){
     //cargar productos
@@ -20,8 +22,8 @@ export class ProductoLista {
     this.productoServicio.obtenerProductosLista().subscribe(
       {
         next: (datos) =>{
-          this.productos = datos;
-          console.log(this.productos[1].nombre);
+          this.productos = datos;         
+          this.cdr.detectChanges();
         },
         error: (error) =>{
           console.error("Error al obtener los productos", error);
