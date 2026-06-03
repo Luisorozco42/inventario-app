@@ -21,6 +21,7 @@ export class ProductoLista {
       {
         next: (datos) =>{
           this.productos = datos;
+          console.log(this.productos[1].nombre);
         },
         error: (error) =>{
           console.error("Error al obtener los productos", error);

@@ -15,13 +15,15 @@
             </tr>
         </thead>
         <tbody>
+            @for(producto of productos;track producto.idProducto) {
             <tr>
-                <th scope="row">1</th>
-                <th scope="row">Agua</th>
-                <th scope="row">se bebe xd</th>
-                <th scope="row">200000</th>
-                <th scope="row">50</th>
+                <th scope="row">{{producto.idProducto}}</th>
+                <th>{{producto.nombre}}</th>
+                <th>{{producto.descripcion}}</th>
+                <th>{{producto.precio}}</th>
+                <th>{{producto.existencia}}</th>
             </tr>
+            }
         </tbody>
     </table>
 
