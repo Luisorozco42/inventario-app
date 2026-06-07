@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ProductoService } from '../producto.service';
 import { Producto } from '../producto';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto-lista',
@@ -12,6 +13,7 @@ export class ProductoLista {
   productos: Producto[] = []  ;
   private productoServicio = inject(ProductoService);
   private cdr = inject(ChangeDetectorRef);
+  private enrutador = inject(Router);
 
   ngOnInit(){
     //cargar productos
@@ -30,5 +32,12 @@ export class ProductoLista {
         }
       }
     );
+  }
+
+  editarProducto(id: number) {
+    this.enrutador.navigate(['/editar-producto', id]);
+  }
+
+  eliminarProducto(id: number) {
   }
 }
